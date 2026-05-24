@@ -1,0 +1,44 @@
+{
+  "providers": [
+    {
+      "id": "provider_a2d50c15",
+      "name": "minimax",
+      "api_format": "anthropic-messages",
+      "api_base": "https://api.minimaxi.com/anthropic",
+      "models": [
+        "MiniMax-Text-01",
+        "MiniMax-M1"
+      ],
+      "active_model": "",
+      "temperature": 0.7,
+      "max_tokens": 4096,
+      "enabled": true,
+      "preset": "minimax",
+      "created_at": "2026-05-10T16:27:19",
+      "api_key": "sk-cp-K-VJU4P_S4KoWfiGESe1GqHmGNK2ZgIcs9S8o_EntCuvm7NYbzyNpMh26RVQUq6peT4iQpg3ny7pOXqF6LSQ6PzmOAemXJ3oYV_259IxXsS28OAo0rFK3yI"
+    },
+    {
+      "id": "provider_25bf6b90",
+      "name": "minimax",
+      "api_format": "anthropic-messages",
+      "api_base": "https://api.minimaxi.com/anthropic",
+      "models": [
+        "MiniMax-M2.7",
+        "MiniMax-M2.7-highspeed",
+        "MiniMax-M2.5",
+        "MiniMax-M2.5-highspeed",
+        "MiniMax-M2.1",
+        "MiniMax-M2.1-highspeed",
+        "MiniMax-M2"
+      ],
+      "active_model": "MiniMax-M2.7",
+      "temperature": 0.7,
+      "max_tokens": 196608,
+      "enabled": true,
+      "preset": "minimax",
+      "created_at": "2026-05-10T16:30:41",
+      "api_key": "sk-cp-K-VJU4P_S4KoWfiGESe1GqHmGNK2ZgIcs9S8o_EntCuvm7NYbzyNpMh26RVQUq6peT4iQpg3ny7pOXqF6LSQ6PzmOAemXJ3oYV_259IxXsS28OAo0rFK3yI"
+    }
+  ],
+  "active_provider_id": "provider_25bf6b90"
+}

@@ -1,0 +1,40 @@
+{
+  "servers": [
+    {
+      "id": "mcp_316f2cce",
+      "name": "My MCP Server",
+      "command": "node",
+      "args": [],
+      "env": {},
+      "env_keys": [],
+      "cwd": "",
+      "enabled": true,
+      "status": "error",
+      "error": "",
+      "tool_count": 0,
+      "created_at": "2026-05-12T17:11:35",
+      "last_connected": ""
+    },
+    {
+      "id": "mcp_0d86abea",
+      "name": "MiniMax 全模态",
+      "command": "node",
+      "args": [
+        "D:\\GITHUB\\mmx-mcp-server\\dist\\index.js"
+      ],
+      "env": {
+        "MINIMAX_API_KEY": "***"
+      },
+      "env_keys": [
+        "MINIMAX_API_KEY"
+      ],
+      "cwd": "D:\\GITHUB\\mmx-mcp-server",
+      "enabled": true,
+      "status": "error",
+      "error": "",
+      "tool_count": 0,
+      "created_at": "2026-05-14T20:09:52",
+      "last_connected": "2026-05-18T08:51:50"
+    }
+  ]
+}

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Agent Manager ♡</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <span class="brand-text">All Agent</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#bridge" class="nav-item" data-section="bridge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>微信桥接</span>
+                </a>
+                <a href="#discovery" class="nav-item" data-section="discovery">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <span>智能发现</span>
+                </a>
+                <a href="#agents" class="nav-item" data-section="agents">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>Agent 状态</span>
+                </a>
+                <a href="#tasks" class="nav-item" data-section="tasks">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    <span>任务管理</span>
+                </a>
+                <a href="#monitor" class="nav-item" data-section="monitor">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    <span>执行监控</span>
+                </a>
+                <a href="#health" class="nav-item" data-section="health">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span>健康状态</span>
+                </a>
+                <a href="#skills" class="nav-item" data-section="skills">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    <span>技能库</span>
+                </a>
+                <a href="#plugins" class="nav-item" data-section="plugins">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    <span>插件管理</span>
+                </a>
+                <a href="#mcp" class="nav-item" data-section="mcp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                    <span>MCP 工具</span>
+                </a>
+                <a href="#evolution" class="nav-item" data-section="evolution">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>进化审查</span>
+                </a>
+                <a href="#messages" class="nav-item" data-section="messages">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>消息记录</span>
+                </a>
+                <a href="#chat" class="nav-item active" data-section="chat">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>iliya 对话</span>
+                </a>
+                <a href="#model-config" class="nav-item" data-section="model-config">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>模型配置</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部状态栏 -->
+            <header class="top-bar">
+                <h1 class="page-title" id="page-title">iliya 对话</h1>
+                <div class="top-bar-actions">
+                    <div class="global-status" id="global-status">
+                        <span class="status-indicator status-offline"></span>
+                        <span class="status-text">系统未连接</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 微信桥接 -->
+            <section id="section-bridge" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>微信桥接</h2>
+                        <p class="section-desc">通过 iLink 协议连接微信，将消息路由到 Agent 执行</p>
+                    </div>
+                </div>
+
+                <div class="bridge-grid">
+                    <!-- 连接状态卡片 -->
+                    <div class="card status-card" id="wechat-status-card">
+                        <div class="card-header">
+                            <h3>连接状态</h3>
+                            <span class="badge badge-offline" id="wechat-badge">未连接</span>
+                        </div>
+                        <div class="status-display">
+                            <div class="status-light" id="wechat-light"></div>
+                            <div class="status-info">
+                                <span class="status-label" id="wechat-status-label">等待连接</span>
+                                <span class="status-detail" id="wechat-status-detail">请通过下方方式连接微信</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger btn-sm" id="wechat-disconnect-btn" style="display:none">断开连接</button>
+                    </div>
+
+                    <!-- Token 连接 -->
+                    <div class="card" id="wechat-token-card">
+                        <div class="card-header">
+                            <h3>Token 连接</h3>
+                            <span class="card-badge">方式一</span>
+                        </div>
+                        <form id="wechat-token-form" class="form-stack">
+                            <div class="form-group">
+                                <label for="wechat-bot-token">Bot Token</label>
+                                <input type="text" id="wechat-bot-token" name="bot_token"
+                                       placeholder="粘贴你的 iLink Bot Token" required>
+                                <span class="form-help">从微信开放平台获取的机器人令牌</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="wechat-agent-id">绑定 Agent</label>
+                                <select id="wechat-agent-id" name="agent_id">
+                                    <option value="">自动分配</option>
+                                    <option value="hermes">Hermes — 研究分析</option>
+                                    <option value="openclaw">OpenClaw — 代码生成</option>
+                                    <option value="openhanako">OpenHanako — 桌面应用</option>
+                                </select>
+                                <span class="form-help">可选，默认根据消息内容自动路由</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="wechat-connect-btn">
+                                <span class="btn-text">连接</span>
+                                <span class="btn-loading" style="display:none">连接中...</span>
+                            </button>
+                        </form>
+                        <div id="wechat-token-result" class="form-result"></div>
+                    </div>
+
+                    <!-- 二维码登录 -->
+                    <div class="card" id="wechat-qr-card">
+                        <div class="card-header">
+                            <h3>扫码登录</h3>
+                            <span class="card-badge">方式二</span>
+                        </div>
+                        <p class="card-desc">使用微信扫描二维码，无需手动输入 Token</p>
+                        <button class="btn btn-outline" id="wechat-qr-btn">获取二维码</button>
+                        <div id="wechat-qr-container" class="qr-container" style="display:none">
+                            <img id="wechat-qr-image" class="qr-image" src="" alt="微信登录二维码">
+                            <div class="qr-status" id="wechat-qr-status">等待扫码...</div>
+                            <div class="qr-hint">打开微信 → 扫一扫 → 确认登录</div>
+                        </div>
+                    </div>
+
+                    <!-- 已保存的 Token 状态 -->
+                    <div class="card" id="wechat-saved-card" style="display:none">
+                        <div class="card-header">
+                            <h3>已保存的连接</h3>
+                            <span class="card-badge">自动重连</span>
+                        </div>
+                        <p class="card-desc">服务器重启后会自动使用保存的 Token 重连微信，无需重新扫码。</p>
+                        <div id="wechat-saved-info" style="margin-bottom: 12px; font-size: 13px; color: var(--text-muted);"></div>
+                        <button class="btn btn-outline btn-sm" id="wechat-clear-token-btn" style="color: var(--color-error);">
+                            清除保存的 Token（需要重新扫码）
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 总调度 Agent 提示词 -->
+                <div class="card" style="margin-top: 16px">
+                    <div class="card-header">
+                        <h3>系统提示词</h3>
+                        <span class="card-badge">All-Agent Manager</span>
+                    </div>
+                    <p class="card-desc">微信消息由总调度 Agent 接收，根据意图自动分发给子 Agent。你可以编辑下方提示词来自定义 Agent 的行为。</p>
+                    <div class="prompt-editor">
+                        <textarea class="prompt-textarea" id="orchestrator-prompt" rows="15" placeholder="加载中..."></textarea>
+                        <div class="prompt-actions">
+                            <span class="prompt-hint" id="prompt-save-status"></span>
+                            <button class="btn btn-outline btn-sm" id="reset-prompt-btn">恢复默认</button>
+                            <button class="btn btn-primary btn-sm" id="save-prompt-btn">
+                                <span class="btn-text">保存提示词</span>
+                                <span class="btn-loading" style="display:none">保存中...</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 智能发现 -->
+            <section id="section-discovery" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>智能发现</h2>
+                        <p class="section-desc">系统主动扫描项目、文件、API 等来源，自动发现待处理任务</p>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-outline btn-sm" id="refresh-discovery">刷新</button>
+                        <button class="btn btn-primary btn-sm" id="scan-discovery-btn">
+                            <span class="btn-text">手动扫描</span>
+                            <span class="btn-loading" style="display:none">扫描中...</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 来源状态 -->
+                <div class="card" style="margin-bottom: 16px">
+                    <div class="card-header">
+                        <h3>任务来源</h3>
+                    </div>
+                    <div class="source-list" id="source-list">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>加载中...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 待处理任务 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>待处理任务</h3>
+                        <button class="btn btn-outline btn-sm" id="clear-discovery-btn">清空</button>
+                    </div>
+                    <div class="discovery-list" id="discovery-list">
+                        <div class="empty-state">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <p>暂无待处理任务</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 扫描历史 -->
+                <div class="card" style="margin-top: 16px">
+                    <div class="card-header">
+                        <h3>扫描历史</h3>
+                    </div>
+                    <div class="scan-history" id="scan-history">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>暂无扫描记录</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Agent 状态 -->
+            <section id="section-agents" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>Agent 状态</h2>
+                        <p class="section-desc">查看各 Agent 的运行状态和配置</p>
+                    </div>
+                </div>
+                <div class="agent-grid" id="agent-grid">
+                    <div class="agent-card" id="agent-openhanako">
+                        <div class="agent-icon agent-icon-hana">H</div>
+                        <div class="agent-info">
+                            <h3>OpenHanako</h3>
+                            <p>本地桌面应用，支持微信桥接、插件、技能</p>
+                        </div>
+                        <div class="agent-meta">
+                            <span class="badge badge-offline" id="openhanako-badge">检测中</span>
+                            <span class="agent-detail" id="openhanako-detail">正在检查连接...</span>
+                        </div>
+                    </div>
+                    <div class="agent-card" id="agent-openclaw">
+                        <div class="agent-icon agent-icon-claw">C</div>
+                        <div class="agent-info">
+                            <h3>OpenClaw</h3>
+                            <p>代码生成、实现、调试任务</p>
+                        </div>
+                        <div class="agent-meta">
+                            <span class="badge badge-configured" id="openclaw-badge">未配置</span>
+                            <span class="agent-detail" id="openclaw-detail">设置 OPENCLAW_URL 环境变量</span>
+                        </div>
+                    </div>
+                    <div class="agent-card" id="agent-hermes">
+                        <div class="agent-icon agent-icon-hermes">M</div>
+                        <div class="agent-info">
+                            <h3>Hermes</h3>
+                            <p>研究、分析、总结任务</p>
+                        </div>
+                        <div class="agent-meta">
+                            <span class="badge badge-configured" id="hermes-badge">未配置</span>
+                            <span class="agent-detail" id="hermes-detail">设置 HERMES_URL 或 HERMES_CLI_COMMAND</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 任务管理 -->
+            <section id="section-tasks" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>任务管理</h2>
+                        <p class="section-desc">提交新任务并查看执行历史</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm" id="refresh-tasks">刷新</button>
+                </div>
+
+                <!-- 提交表单 -->
+                <div class="card submit-card">
+                    <form id="task-form" class="form-horizontal">
+                        <div class="form-group form-grow">
+                            <label for="goal">任务目标</label>
+                            <textarea id="goal" name="goal" rows="3"
+                                      placeholder="描述你想让系统执行的任务..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="requested_agent">选择 Agent</label>
+                            <select id="requested_agent" name="requested_agent">
+                                <option value="auto">自动路由</option>
+                                <option value="openhanako">OpenHanako</option>
+                                <option value="openclaw">OpenClaw</option>
+                                <option value="hermes">Hermes</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submit-task-btn">
+                            <span class="btn-text">提交任务</span>
+                            <span class="btn-loading" style="display:none">提交中...</span>
+                        </button>
+                    </form>
+                    <div id="submit-result" class="form-result"></div>
+                </div>
+
+                <!-- 任务列表 -->
+                <div class="task-list" id="task-list">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <p>暂无任务</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 执行监控 -->
+            <section id="section-monitor" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>执行监控</h2>
+                        <p class="section-desc">实时监控任务执行状态，包含重试、超时和执行统计</p>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-outline btn-sm" id="refresh-monitor">刷新</button>
+                        <button class="btn btn-outline btn-sm" id="cleanup-monitor-btn">清理历史</button>
+                    </div>
+                </div>
+
+                <!-- 执行统计摘要 -->
+                <div class="stats-grid" id="monitor-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-running">0</div>
+                        <div class="stat-label">执行中</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-retrying">0</div>
+                        <div class="stat-label">重试中</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-completed">0</div>
+                        <div class="stat-label">已完成</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-failed">0</div>
+                        <div class="stat-label">失败</div>
+                    </div>
+                </div>
+
+                <!-- Agent 执行统计 -->
+                <div class="card" style="margin-bottom: 16px;">
+                    <div class="card-header">
+                        <h3>Agent 执行统计</h3>
+                    </div>
+                    <div id="agent-exec-stats" class="agent-stats-grid">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>加载中...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 执行历史 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>执行历史</h3>
+                    </div>
+                    <div class="execution-history" id="execution-history">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>暂无执行记录</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 健康状态 -->
+            <section id="section-health" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>健康状态</h2>
+                        <p class="section-desc">监控各 Agent 的健康状态和可用性</p>
+                    </div>
+                    <button class="btn btn-primary btn-sm" id="health-check-btn">
+                        <span class="btn-text">立即检查</span>
+                        <span class="btn-loading" style="display:none">检查中...</span>
+                    </button>
+                </div>
+
+                <!-- 健康摘要 -->
+                <div class="stats-grid" id="health-stats">
+                    <div class="stat-card stat-healthy">
+                        <div class="stat-value" id="health-healthy">0</div>
+                        <div class="stat-label">健康</div>
+                    </div>
+                    <div class="stat-card stat-degraded">
+                        <div class="stat-value" id="health-degraded">0</div>
+                        <div class="stat-label">降级</div>
+                    </div>
+                    <div class="stat-card stat-unhealthy">
+                        <div class="stat-value" id="health-unhealthy">0</div>
+                        <div class="stat-label">不健康</div>
+                    </div>
+                    <div class="stat-card stat-unknown">
+                        <div class="stat-value" id="health-unknown">0</div>
+                        <div class="stat-label">未知</div>
+                    </div>
+                </div>
+
+                <!-- Agent 详细状态 -->
+                <div class="card" style="margin-bottom: 16px;">
+                    <div class="card-header">
+                        <h3>Agent 详细状态</h3>
+                    </div>
+                    <div id="health-detail-list" class="health-detail-list">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>加载中...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 恢复历史 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>恢复历史</h3>
+                    </div>
+                    <div id="recovery-history" class="recovery-history">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>暂无恢复记录</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技能库 -->
+            <section id="section-skills" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>技能库</h2>
+                        <p class="section-desc">管理从成功任务中提炼的可复用技能</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline btn-sm" id="refresh-skills">刷新</button>
+                        <button class="btn btn-primary btn-sm" id="analyze-skills-btn">
+                            <span class="btn-text">分析历史</span>
+                            <span class="btn-loading">分析中...</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 技能统计 -->
+                <div class="stats-grid" id="skill-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="skill-total">0</div>
+                        <div class="stat-label">总技能</div>
+                    </div>
+                    <div class="stat-card stat-healthy">
+                        <div class="stat-value" id="skill-active">0</div>
+                        <div class="stat-label">已激活</div>
+                    </div>
+                    <div class="stat-card stat-degraded">
+                        <div class="stat-value" id="skill-draft">0</div>
+                        <div class="stat-label">草稿</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="skill-success-rate">0%</div>
+                        <div class="stat-label">成功率</div>
+                    </div>
+                </div>
+
+                <!-- 搜索和过滤 -->
+                <div class="card" style="margin-bottom: var(--sp-4);">
+                    <div class="filter-bar">
+                        <input type="text" id="skill-search" class="filter-input" placeholder="搜索技能名称或描述...">
+                        <select id="skill-status-filter" class="filter-select">
+                            <option value="">全部状态</option>
+                            <option value="active">已激活</option>
+                            <option value="draft">草稿</option>
+                            <option value="disabled">已禁用</option>
+                        </select>
+                        <select id="skill-agent-filter" class="filter-select">
+                            <option value="">全部 Agent</option>
+                            <option value="openclaw">OpenClaw</option>
+                            <option value="hermes">Hermes</option>
+                            <option value="openhanako">OpenHanako</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 技能列表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>技能列表</h3>
+                        <div class="btn-group">
+                            <span class="card-badge" id="skill-count">0 项</span>
+                            <button class="btn btn-ghost btn-xs" id="skill-select-all" title="全选">全选</button>
+                            <button class="btn btn-danger btn-xs" id="skill-batch-delete" title="批量删除" style="display:none">删除选中</button>
+                        </div>
+                    </div>
+                    <!-- 拖拽安装区域 -->
+                    <div class="upload-dropzone" id="skill-dropzone">
+                        <input type="file" id="skill-file-input" accept=".zip,.skill" style="display:none">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <p>拖拽 <strong>.zip</strong> 或 <strong>.skill</strong> 文件到此处安装技能</p>
+                        <span class="form-help">或点击选择文件 · ZIP 内需包含 SKILL.md</span>
+                    </div>
+                    <div class="skill-list" id="skill-list">
+                        <div class="empty-state">
+                            <p>暂无技能</p>
+                            <span class="form-help">拖拽 ZIP 文件安装，或点击"分析历史"自动提取</span>
+                        </div>
+                    </div>
+                    <div class="pagination" id="skill-pagination"></div>
+                </div>
+            </section>
+
+            <!-- 插件管理 -->
+            <section id="section-plugins" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>插件管理</h2>
+                        <p class="section-desc">管理 Agent 可用的插件和能力</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline btn-sm" id="refresh-plugins">刷新</button>
+                        <button class="btn btn-primary btn-sm" id="install-plugin-btn">
+                            <span class="btn-text">安装插件</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 插件统计 -->
+                <div class="stats-grid" id="plugin-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="plugin-total">0</div>
+                        <div class="stat-label">总插件</div>
+                    </div>
+                    <div class="stat-card stat-healthy">
+                        <div class="stat-value" id="plugin-active">0</div>
+                        <div class="stat-label">已启用</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="plugin-capabilities">0</div>
+                        <div class="stat-label">能力数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="plugin-success-rate">0%</div>
+                        <div class="stat-label">成功率</div>
+                    </div>
+                </div>
+
+                <!-- 搜索和过滤 -->
+                <div class="card" style="margin-bottom: var(--sp-4);">
+                    <div class="filter-bar">
+                        <input type="text" id="plugin-search" class="filter-input" placeholder="搜索插件名称或能力...">
+                        <select id="plugin-status-filter" class="filter-select">
+                            <option value="">全部状态</option>
+                            <option value="active">已启用</option>
+                            <option value="inactive">未启用</option>
+                        </select>
+                        <select id="plugin-safe-filter" class="filter-select">
+                            <option value="">全部风险级别</option>
+                            <option value="low">低风险</option>
+                            <option value="medium">中风险</option>
+                            <option value="high">高风险</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 能力图谱 -->
+                <div class="card" style="margin-bottom: var(--sp-4);">
+                    <div class="card-header">
+                        <h3>能力图谱</h3>
+                    </div>
+                    <div id="capability-map" class="capability-map">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>加载中...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 插件列表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>插件列表</h3>
+                        <div class="btn-group">
+                            <span class="card-badge" id="plugin-count">0 项</span>
+                            <button class="btn btn-ghost btn-xs" id="plugin-select-all" title="全选">全选</button>
+                            <button class="btn btn-danger btn-xs" id="plugin-batch-delete" title="批量删除" style="display:none">删除选中</button>
+                        </div>
+                    </div>
+                    <!-- 拖拽安装区域 -->
+                    <div class="upload-dropzone" id="plugin-dropzone">
+                        <input type="file" id="plugin-file-input" accept=".zip" style="display:none">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <p>拖拽 <strong>.zip</strong> 文件到此处安装插件</p>
+                        <span class="form-help">或点击选择文件 · ZIP 内需包含 manifest.json</span>
+                    </div>
+                    <div class="plugin-list" id="plugin-list">
+                        <div class="empty-state">
+                            <p>暂无插件</p>
+                        </div>
+                    </div>
+                    <div class="pagination" id="plugin-pagination"></div>
+                </div>
+            </section>
+
+            <!-- MCP 工具 -->
+            <section id="section-mcp" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>MCP 工具</h2>
+                        <p class="section-desc">管理 MCP Server 连接，为 iliya 提供外部工具能力</p>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-outline btn-sm" id="mcp-refresh" onclick="fetchMcpServers()">刷新</button>
+                        <button class="btn btn-primary btn-sm" id="mcp-add-btn" onclick="showAddMcpDialog()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            添加 Server
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 统计概览 -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-value" id="mcp-stat-total">0</span>
+                        <span class="stat-label">Server 总数</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="mcp-stat-running">0</span>
+                        <span class="stat-label">运行中</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="mcp-stat-tools">0</span>
+                        <span class="stat-label">可用工具</span>
+                    </div>
+                </div>
+
+                <!-- 搜索/过滤 -->
+                <div class="filter-bar">
+                    <input type="text" class="filter-input" id="mcp-search" placeholder="搜索 MCP Server..." oninput="filterMcpServers()">
+                </div>
+
+                <!-- 服务器列表 -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>MCP Servers</h3>
+                    </div>
+                    <div id="mcp-servers-list">
+                        <div class="empty-state">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <p>暂无 MCP Server，点击右上角添加</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 工具调用面板 -->
+                <div class="content-card" id="mcp-tool-panel" style="display: none; margin-top: 16px;">
+                    <div class="card-header">
+                        <h3>工具调用</h3>
+                        <button class="btn btn-ghost btn-xs" onclick="document.getElementById('mcp-tool-panel').style.display='none'">关闭</button>
+                    </div>
+                    <div style="padding: 16px;">
+                        <div class="form-group">
+                            <label>选择 Server</label>
+                            <select id="mcp-tool-server" class="form-input" onchange="loadMcpToolList()">
+                                <option value="">-- 选择 --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>选择工具</label>
+                            <select id="mcp-tool-name" class="form-input" onchange="showMcpToolSchema()">
+                                <option value="">-- 选择 --</option>
+                            </select>
+                        </div>
+                        <div id="mcp-tool-schema-info" style="display:none; margin-bottom: 12px; padding: 12px; background: #FFF5F9; border-radius: 10px; font-size: 13px; color: var(--text-muted); border: 1.5px solid #F5D6E4;"></div>
+                        <div class="form-group">
+                            <label>参数 (JSON)</label>
+                            <textarea id="mcp-tool-args" class="form-input" rows="5" placeholder="{}" style="font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 13px; border-radius: 10px;"></textarea>
+                        </div>
+                        <div style="display: flex; gap: 8px; margin-top: 8px;">
+                            <button class="btn btn-primary btn-sm" onclick="callMcpTool()">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                调用
+                            </button>
+                        </div>
+                        <div id="mcp-tool-result" style="display: none; margin-top: 12px; padding: 12px; background: #FFF5F9; border-radius: 10px; font-size: 13px; white-space: pre-wrap; max-height: 400px; overflow-y: auto; border: 1.5px solid #F5D6E4;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 进化审查 -->
+            <section id="section-evolution" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>进化审查</h2>
+                        <p class="section-desc">审查新技能的安全性和合理性，确保系统安全进化</p>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-outline btn-sm" id="refresh-evolution">刷新</button>
+                        <button class="btn btn-primary btn-sm" id="generate-skills-btn">
+                            <span class="btn-text">生成技能提案</span>
+                            <span class="btn-loading" style="display:none">生成中...</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 审查统计 -->
+                <div class="stats-grid" id="evolution-stats">
+                    <div class="stat-card stat-degraded">
+                        <div class="stat-value" id="evo-pending">0</div>
+                        <div class="stat-label">待审查</div>
+                    </div>
+                    <div class="stat-card stat-healthy">
+                        <div class="stat-value" id="evo-approved">0</div>
+                        <div class="stat-label">已批准</div>
+                    </div>
+                    <div class="stat-card stat-unhealthy">
+                        <div class="stat-value" id="evo-rejected">0</div>
+                        <div class="stat-label">已拒绝</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="evo-rules">0</div>
+                        <div class="stat-label">审查规则</div>
+                    </div>
+                </div>
+
+                <!-- 搜索和过滤 -->
+                <div class="card" style="margin-bottom: 16px;">
+                    <div class="filter-bar">
+                        <input type="text" id="review-search" class="filter-input" placeholder="搜索技能名称...">
+                        <select id="review-status-filter" class="filter-select">
+                            <option value="">全部状态</option>
+                            <option value="pending">待审查</option>
+                            <option value="approved">已批准</option>
+                            <option value="rejected">已拒绝</option>
+                        </select>
+                        <select id="review-risk-filter" class="filter-select">
+                            <option value="">全部风险</option>
+                            <option value="low">低风险</option>
+                            <option value="medium">中风险</option>
+                            <option value="high">高风险</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 待审查列表 -->
+                <div class="card" style="margin-bottom: 16px;">
+                    <div class="card-header">
+                        <h3>待审查技能</h3>
+                        <span class="card-badge" id="pending-count">0 项</span>
+                    </div>
+                    <div id="pending-reviews" class="review-list">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>暂无待审查技能</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 审查历史 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>审查历史</h3>
+                        <span class="card-badge" id="history-count">0 项</span>
+                    </div>
+                    <div id="review-history" class="review-list">
+                        <div class="empty-state" style="padding: 16px;">
+                            <p>暂无审查记录</p>
+                        </div>
+                    </div>
+                    <div class="pagination" id="review-pagination"></div>
+                </div>
+            </section>
+
+            <!-- 消息记录 -->
+            <section id="section-messages" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>消息记录</h2>
+                        <p class="section-desc">微信桥接收发的消息历史</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm" id="refresh-messages">刷新</button>
+                </div>
+                <div class="message-list" id="message-list">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <p>暂无消息</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI 对话 -->
+            <section id="section-chat" class="content-section active">
+                <div class="section-header">
+                    <div>
+                        <h2>iliya 对话</h2>
+                        <p class="section-desc">和你的专属小甜妹聊天吧～ ♡</p>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-outline btn-sm" id="clear-chat-btn" style="border-color: #F5D6E4; color: #E8608C;">清空对话</button>
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <!-- 当前模型状态 -->
+                    <div class="chat-model-status" id="chat-model-status">
+                        <span class="chat-model-name" id="chat-model-name">未配置模型</span>
+                        <a href="#model-config" class="nav-item" data-section="model-config" style="font-size: 12px; padding: 4px 10px; color: #E8608C; border-radius: 50px;">配置模型</a>
+                    </div>
+
+                    <!-- 聊天消息区域 -->
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="chat-welcome">
+                            <div class="chat-welcome-avatar">
+                                <span>iliya</span>
+                            </div>
+                            <h3>主人好呀～</h3>
+                            <p>我是 iliya，你的专属小甜妹！请先在「模型配置」中添加模型供应商，然后就可以和我聊天啦～</p>
+                        </div>
+                    </div>
+
+                    <!-- Agent 选择 -->
+                    <div class="chat-agent-selector">
+                        <span class="chat-agent-label">对话对象：</span>
+                        <div class="chat-agent-btns">
+                            <button class="chat-agent-btn active" data-agent="" title="iliya 总调度">iliya</button>
+                            <button class="chat-agent-btn" data-agent="openhanako" title="桌面应用专家">OpenHanako</button>
+                            <button class="chat-agent-btn" data-agent="openclaw" title="代码工程师">OpenClaw</button>
+                            <button class="chat-agent-btn" data-agent="hermes" title="研究分析师">Hermes</button>
+                        </div>
+                    </div>
+
+                    <!-- MCP 工具测试面板 -->
+                    <div id="chat-mcp-panel" class="chat-mcp-panel" style="display: none;">
+                        <div class="chat-mcp-panel-header">
+                            <span>MCP 工具调用</span>
+                            <button class="btn btn-ghost btn-xs" onclick="toggleChatMcpPanel()">关闭</button>
+                        </div>
+                        <div class="chat-mcp-panel-body">
+                            <div class="chat-mcp-row">
+                                <label>Server</label>
+                                <select id="chat-mcp-server" class="chat-mcp-select" onchange="chatMcpLoadTools()">
+                                    <option value="">-- 选择 Server --</option>
+                                </select>
+                            </div>
+                            <div class="chat-mcp-row">
+                                <label>工具</label>
+                                <select id="chat-mcp-tool" class="chat-mcp-select" onchange="chatMcpShowSchema()">
+                                    <option value="">-- 选择工具 --</option>
+                                </select>
+                            </div>
+                            <div id="chat-mcp-schema" class="chat-mcp-schema" style="display: none;"></div>
+                            <div class="chat-mcp-row">
+                                <label>参数</label>
+                                <textarea id="chat-mcp-args" class="chat-mcp-textarea" rows="3" placeholder="{}"></textarea>
+                            </div>
+                            <div class="chat-mcp-actions">
+                                <button class="btn btn-primary btn-sm" onclick="chatMcpCallTool()" id="chat-mcp-call-btn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                    调用
+                                </button>
+                                <span id="chat-mcp-status" style="font-size: 12px; color: var(--text-muted);"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 输入区域 -->
+                    <div class="chat-input-area">
+                        <div class="chat-mcp-toolbar">
+                            <button class="chat-mcp-toggle-btn" id="chat-mcp-toggle" onclick="toggleChatMcpPanel()" title="MCP 工具调用">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                                <span>MCP 工具</span>
+                            </button>
+                            <span class="chat-mcp-hint" id="chat-mcp-hint"></span>
+                        </div>
+                        <div class="chat-input-wrapper">
+                            <textarea id="chat-input" class="chat-input" placeholder="和 iliya 说点什么吧～" rows="1"></textarea>
+                            <button id="chat-send-btn" class="chat-send-btn" disabled>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </div>
+                        <div class="chat-input-hint">Enter 发送 | Shift+Enter 换行</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 模型配置 -->
+            <section id="section-model-config" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2>模型配置</h2>
+                        <p class="section-desc">配置 AI 模型供应商，支持 OpenAI、Anthropic、Ollama 等</p>
+                    </div>
+                </div>
+
+                <div class="mc-layout">
+                    <!-- 左侧：供应商列表 -->
+                    <div class="mc-sidebar">
+                        <!-- 预设供应商 -->
+                        <div class="mc-presets-section">
+                            <div class="mc-section-title">快速添加</div>
+                            <div class="mc-preset-grid" id="mc-preset-grid">
+                                <div class="mc-preset-btn" data-preset="ollama">
+                                    <div class="mc-preset-icon" style="background: #333;">O</div>
+                                    <span>Ollama</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="openai">
+                                    <div class="mc-preset-icon" style="background: #10a37f;">G</div>
+                                    <span>OpenAI</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="anthropic">
+                                    <div class="mc-preset-icon" style="background: #d97757;">A</div>
+                                    <span>Anthropic</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="deepseek">
+                                    <div class="mc-preset-icon" style="background: #4d6bfe;">D</div>
+                                    <span>DeepSeek</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="dashscope">
+                                    <div class="mc-preset-icon" style="background: #615ea8;">Q</div>
+                                    <span>DashScope</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="moonshot">
+                                    <div class="mc-preset-icon" style="background: #1a1a2e;">K</div>
+                                    <span>Moonshot</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="siliconflow">
+                                    <div class="mc-preset-icon" style="background: #6366f1;">S</div>
+                                    <span>SiliconFlow</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="groq">
+                                    <div class="mc-preset-icon" style="background: #f55036;">Gr</div>
+                                    <span>Groq</span>
+                                </div>
+                                <div class="mc-preset-btn" data-preset="minimax">
+                                    <div class="mc-preset-icon" style="background: #0099ff;">Mi</div>
+                                    <span>MiniMax</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 已添加供应商 -->
+                        <div class="mc-providers-section">
+                            <div class="mc-section-title">已添加供应商</div>
+                            <div id="mc-provider-list" class="mc-provider-list">
+                                <div class="mc-empty-hint">暂无供应商</div>
+                            </div>
+                        </div>
+
+                        <!-- 添加自定义供应商 -->
+                        <div class="mc-custom-section">
+                            <button class="mc-add-custom-btn" id="mc-add-custom-btn">+ 添加自定义供应商</button>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：供应商详情 -->
+                    <div class="mc-detail" id="mc-detail">
+                        <div class="mc-detail-empty">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <p>选择左侧供应商查看详情</p>
+                        </div>
+                        <div class="mc-detail-content" id="mc-detail-content" style="display:none;">
+                            <!-- 供应商头部 -->
+                            <div class="mc-detail-header">
+                                <h3 id="mc-detail-name"></h3>
+                                <div class="mc-detail-actions">
+                                    <button class="mc-verify-btn" id="mc-verify-btn" title="验证连接">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                        验证
+                                    </button>
+                                    <button class="mc-delete-btn" id="mc-delete-btn" title="删除">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 凭证配置 -->
+                            <div class="mc-credentials">
+                                <div class="mc-cred-row">
+                                    <label>API Key</label>
+                                    <div class="mc-key-input-wrap">
+                                        <input type="password" id="mc-api-key" class="mc-input" placeholder="sk-...">
+                                        <button class="mc-key-toggle" id="mc-key-toggle" title="显示/隐藏">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mc-cred-row">
+                                    <label>Base URL</label>
+                                    <input type="text" id="mc-api-base" class="mc-input" placeholder="https://api.example.com/v1">
+                                </div>
+                                <div class="mc-cred-row">
+                                    <label>API 格式</label>
+                                    <select id="mc-api-format" class="mc-select">
+                                        <option value="openai-completions">OpenAI Compatible</option>
+                                        <option value="anthropic-messages">Anthropic Messages</option>
+                                        <option value="ollama-chat">Ollama Native</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 模型管理 -->
+                            <div class="mc-models-section">
+                                <div class="mc-models-header">
+                                    <h4>模型列表</h4>
+                                    <div class="mc-models-actions">
+                                        <button class="mc-fetch-models-btn" id="mc-fetch-models-btn" title="从服务器获取模型">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                                            获取模型
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="mc-model-list" class="mc-model-list">
+                                    <div class="mc-empty-hint">暂无模型</div>
+                                </div>
+                                <div class="mc-add-model-row">
+                                    <input type="text" id="mc-custom-model-input" class="mc-input" placeholder="输入模型 ID 添加自定义模型">
+                                    <button class="mc-add-model-btn" id="mc-add-model-btn">添加</button>
+                                </div>
+                            </div>
+
+                            <!-- 参数设置 -->
+                            <div class="mc-params">
+                                <div class="mc-param-row">
+                                    <label>活跃模型</label>
+                                    <select id="mc-active-model" class="mc-select">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="mc-param-row">
+                                    <label>温度</label>
+                                    <input type="number" id="mc-temperature" class="mc-input mc-input-sm" value="0.7" min="0" max="2" step="0.1">
+                                </div>
+                                <div class="mc-param-row">
+                                    <label>最大 Token</label>
+                                    <input type="number" id="mc-max-tokens" class="mc-input mc-input-sm" value="4096" min="100" max="128000">
+                                </div>
+                            </div>
+
+                            <!-- 保存 -->
+                            <div class="mc-save-row">
+                                <button class="mc-save-btn" id="mc-save-btn">
+                                    <span class="btn-text">保存配置</span>
+                                    <span class="btn-loading" style="display:none">保存中...</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast 容器 -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

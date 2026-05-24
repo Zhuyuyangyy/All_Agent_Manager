@@ -1,0 +1,30 @@
+{
+  "id": "code-formatter",
+  "name": "Code Formatter",
+  "description": "Formats code in various programming languages",
+  "version": "1.0.0",
+  "author": "OpenClaude",
+  "status": "active",
+  "security_level": "low",
+  "capabilities": [
+    {
+      "id": "format-code",
+      "name": "Format Code",
+      "description": "Format code according to style guidelines",
+      "inputs": ["code", "language", "style"],
+      "outputs": ["formatted_code"]
+    }
+  ],
+  "fallback_to": [],
+  "total_uses": 0,
+  "success_count": 0,
+  "fail_count": 0,
+  "success_rate": 0,
+  "created_at": "2026-05-14T22:00:00.000000",
+  "updated_at": "2026-05-14T22:00:00.000000",
+  "tags": ["code", "formatting", "development"],
+  "metadata": {
+    "category": "development",
+    "license": "MIT"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "updated_at": "2026-05-10T14:14:30.265396",
+  "rules": [
+    {
+      "id": "02849ef1",
+      "name": "危险插件检查",
+      "description": "检查技能是否使用高风险插件",
+      "check_type": "plugin_risk",
+      "check_value": "high",
+      "risk_level": "high",
+      "action": "require_approval",
+      "enabled": true
+    },
+    {
+      "id": "6b3ed247",
+      "name": "未授权 Agent 检查",
+      "description": "检查技能是否调用未授权的 Agent",
+      "check_type": "agent_unauthorized",
+      "check_value": "",
+      "risk_level": "medium",
+      "action": "flag",
+      "enabled": true
+    },
+    {
+      "id": "490ef128",
+      "name": "敏感关键词检查",
+      "description": "检查技能描述是否包含敏感关键词",
+      "check_type": "keyword",
+      "check_value": "delete,remove,drop,truncate,格式化,删除,清空",
+      "risk_level": "high",
+      "action": "require_approval",
+      "enabled": true
+    },
+    {
+      "id": "49258a63",
+      "name": "外部网络访问检查",
+      "description": "检查技能是否访问外部网络",
+      "check_type": "network_access",
+      "check_value": "http,https,api,fetch",
+      "risk_level": "medium",
+      "action": "flag",
+      "enabled": true
+    },
+    {
+      "id": "10721c9a",
+      "name": "文件系统写入检查",
+      "description": "检查技能是否写入文件系统",
+      "check_type": "file_write",
+      "check_value": "write,save,export,保存,导出",
+      "risk_level": "low",
+      "action": "flag",
+      "enabled": true
+    },
+    {
+      "id": "69f397d8",
+      "name": "系统命令执行检查",
+      "description": "检查技能是否执行系统命令",
+      "check_type": "keyword",
+      "check_value": "exec,system,shell,command,subprocess,os.system,eval",
+      "risk_level": "critical",
+      "action": "block",
+      "enabled": true
+    },
+    {
+      "id": "65c472c0",
+      "name": "环境变量访问检查",
+      "description": "检查技能是否访问敏感环境变量",
+      "check_type": "keyword",
+      "check_value": "env,environment,secret,token,password,api_key",
+      "risk_level": "high",
+      "action": "require_approval",
+      "enabled": true
+    },
+    {
+      "id": "b87ae1e6",
+      "name": "递归深度检查",
+      "description": "检查技能步骤是否过深（可能导致无限循环）",
+      "check_type": "step_depth",
+      "check_value": "10",
+      "risk_level": "medium",
+      "action": "flag",
+      "enabled": true
+    }
+  ],
+  "reviews": []
+}

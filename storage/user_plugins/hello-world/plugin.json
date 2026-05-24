@@ -1,0 +1,30 @@
+{
+  "id": "hello-world",
+  "name": "Hello World",
+  "description": "A simple hello world plugin for demonstration",
+  "version": "1.0.0",
+  "author": "OpenClaude",
+  "status": "active",
+  "security_level": "low",
+  "capabilities": [
+    {
+      "id": "say-hello",
+      "name": "Say Hello",
+      "description": "Say hello to someone",
+      "inputs": ["name"],
+      "outputs": ["message"]
+    }
+  ],
+  "fallback_to": [],
+  "total_uses": 0,
+  "success_count": 0,
+  "fail_count": 0,
+  "success_rate": 0,
+  "created_at": "2026-05-14T22:00:00.000000",
+  "updated_at": "2026-05-14T22:00:00.000000",
+  "tags": ["demo", "simple"],
+  "metadata": {
+    "category": "demo",
+    "license": "MIT"
+  }
+}

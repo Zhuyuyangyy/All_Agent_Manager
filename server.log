@@ -1,0 +1,8 @@
+﻿python : INFO:     Started server process [8780]
+所在位置 行:1 字符: 82
++ ... NG="utf-8"; python -m uvicorn backend.app:create_app --factory --host ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (INFO:     Started server process [8780]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+INFO:     Waiting for application startup.

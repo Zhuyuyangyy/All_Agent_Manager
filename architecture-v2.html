@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-Agent Manager V2 架构图</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 10px; font-size: 28px; color: #38bdf8; }
+    .subtitle { text-align: center; color: #94a3b8; margin-bottom: 30px; font-size: 14px; }
+    .diagram { max-width: 1200px; margin: 0 auto; position: relative; }
+
+    /* 层级标签 */
+    .layer { margin-bottom: 24px; border: 1px solid #334155; border-radius: 12px; padding: 16px; position: relative; }
+    .layer-label {
+      position: absolute; top: -12px; left: 20px; background: #1e293b;
+      padding: 2px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
+      border: 1px solid #475569;
+    }
+    .layer-label.frontend { color: #22d3ee; border-color: #22d3ee; }
+    .layer-label.api { color: #a78bfa; border-color: #a78bfa; }
+    .layer-label.core { color: #f472b6; border-color: #f472b6; }
+    .layer-label.infra { color: #34d399; border-color: #34d399; }
+    .layer-label.worker { color: #fb923c; border-color: #fb923c; }
+
+    .layer-content { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding-top: 8px; }
+
+    /* 模块卡片 */
+    .module {
+      background: #1e293b; border: 1px solid #475569; border-radius: 8px;
+      padding: 12px 16px; min-width: 140px; text-align: center; transition: all 0.2s;
+      cursor: default; position: relative;
+    }
+    .module:hover { border-color: #60a5fa; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(96,165,250,0.2); }
+    .module .name { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+    .module .desc { font-size: 11px; color: #94a3b8; }
+    .module.new { border-color: #22d3ee; }
+    .module.new::after { content: 'NEW'; position: absolute; top: -8px; right: -8px; background: #22d3ee; color: #0f172a; font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+
+    /* 颜色主题 */
+    .module.frontend { border-left: 3px solid #22d3ee; }
+    .module.api { border-left: 3px solid #a78bfa; }
+    .module.core { border-left: 3px solid #f472b6; }
+    .module.infra { border-left: 3px solid #34d399; }
+    .module.worker { border-left: 3px solid #fb923c; }
+
+    /* EventBus 特殊样式 */
+    .eventbus {
+      background: linear-gradient(135deg, #1e3a5f, #1e293b);
+      border: 2px solid #38bdf8; border-radius: 12px; padding: 16px;
+      text-align: center; margin: 16px 0; position: relative;
+    }
+    .eventbus .name { font-size: 16px; font-weight: 700; color: #38bdf8; }
+    .eventbus .events { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+    .event-tag {
+      background: #0f172a; border: 1px solid #475569; border-radius: 20px;
+      padding: 4px 10px; font-size: 10px; color: #94a3b8; white-space: nowrap;
+    }
+    .event-tag.publish { border-color: #34d399; color: #34d399; }
+    .event-tag.subscribe { border-color: #a78bfa; color: #a78bfa; }
+
+    /* 箭头连接 */
+    .arrow-container { display: flex; justify-content: center; margin: 8px 0; }
+    .arrow { color: #64748b; font-size: 20px; }
+    .arrow.bi { color: #38bdf8; }
+
+    /* 说明面板 */
+    .legend { max-width: 1200px; margin: 30px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .legend-card {
+      background: #1e293b; border: 1px solid #475569; border-radius: 8px; padding: 16px;
+    }
+    .legend-card h3 { font-size: 14px; margin-bottom: 8px; color: #f472b6; }
+    .legend-card ul { list-style: none; padding: 0; }
+    .legend-card li { font-size: 12px; color: #94a3b8; padding: 4px 0; border-bottom: 1px solid #334155; }
+    .legend-card li:last-child { border: none; }
+    .legend-card li strong { color: #e2e8f0; }
+
+    .flow-section { max-width: 1200px; margin: 30px auto 0; }
+    .flow-section h2 { font-size: 18px; color: #38bdf8; margin-bottom: 16px; text-align: center; }
+    .flow-steps { display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .flow-step {
+      background: #1e293b; border: 1px solid #475569; border-radius: 8px;
+      padding: 10px 14px; font-size: 12px; text-align: center; min-width: 120px;
+    }
+    .flow-step .step-num { font-size: 10px; color: #38bdf8; margin-bottom: 4px; }
+    .flow-step .step-text { color: #e2e8f0; }
+    .flow-arrow { color: #475569; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>All-Agent Manager V2 架构图</h1>
+  <p class="subtitle">Self-Evolving Agent Orchestrator — 基于 OpenHanako 启发的架构升级</p>
+
+  <div class="diagram">
+    <!-- 前端层 -->
+    <div class="layer">
+      <span class="layer-label frontend">Frontend 层</span>
+      <div class="layer-content">
+        <div class="module frontend">
+          <div class="name">Dashboard</div>
+          <div class="desc">Vue/React SPA</div>
+        </div>
+        <div class="module frontend">
+          <div class="name">WebSocket Client</div>
+          <div class="desc">实时状态推送</div>
+        </div>
+        <div class="module frontend">
+          <div class="name">Event Subscriber</div>
+          <div class="desc">订阅 EventBus 事件</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-container"><span class="arrow">↕️</span></div>
+
+    <!-- API 层 -->
+    <div class="layer">
+      <span class="layer-label api">API 层</span>
+      <div class="layer-content">
+        <div class="module api">
+          <div class="name">FastAPI</div>
+          <div class="desc">REST + WebSocket</div>
+        </div>
+        <div class="module api">
+          <div class="name">Event WS Handler</div>
+          <div class="desc">事件广播到前端</div>
+        </div>
+        <div class="module api">
+          <div class="name">Auth Middleware</div>
+          <div class="desc">Token / Session</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-container"><span class="arrow">↕️</span></div>
+
+    <!-- EventBus 核心 -->
+    <div class="eventbus">
+      <div class="name">⚡ EventBus — 统一事件总线</div>
+      <p style="font-size: 12px; color: #94a3b8; margin-top: 6px;">松耦合模块通信 · 请求/响应模式 · 按类型/来源过滤</p>
+      <div class="events">
+        <span class="event-tag publish">task.started</span>
+        <span class="event-tag publish">task.completed</span>
+        <span class="event-tag publish">task.failed</span>
+        <span class="event-tag publish">task.timeout</span>
+        <span class="event-tag publish">agent.health_changed</span>
+        <span class="event-tag publish">agent.recovery_triggered</span>
+        <span class="event-tag publish">skill.activated</span>
+        <span class="event-tag publish">skill.extracted</span>
+        <span class="event-tag publish">review.approved</span>
+        <span class="event-tag publish">review.rejected</span>
+        <span class="event-tag publish">plugin.registered</span>
+        <span class="event-tag subscribe">waiting_scheduler.claim</span>
+        <span class="event-tag subscribe">frontend.refresh</span>
+      </div>
+    </div>
+
+    <div class="arrow-container"><span class="arrow bi">↕️</span></div>
+
+    <!-- 核心层 -->
+    <div class="layer">
+      <span class="layer-label core">Core 层 — 业务逻辑</span>
+      <div class="layer-content">
+        <div class="module core">
+          <div class="name">TaskRegistry</div>
+          <div class="desc">类型处理器 · 任务实例</div>
+        </div>
+        <div class="module core">
+          <div class="name">MasterScheduler</div>
+          <div class="desc">智能路由 · 目标拆解</div>
+        </div>
+        <div class="module core">
+          <div class="name">TaskDispatcher</div>
+          <div class="desc">任务下发 · 重试</div>
+        </div>
+        <div class="module core">
+          <div class="name">WaitingScheduler</div>
+          <div class="desc">等待队列 · 自动续派</div>
+        </div>
+        <div class="module core">
+          <div class="name">ExecutionMonitor</div>
+          <div class="desc">超时 · 心跳 · 统计</div>
+        </div>
+        <div class="module core">
+          <div class="name">HealthMonitor</div>
+          <div class="desc">健康检测 · 自动恢复</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-container"><span class="arrow bi">↕️</span></div>
+
+    <!-- 自进化层 -->
+    <div class="layer">
+      <span class="layer-label core">Self-Evolution 层 — 自进化闭环</span>
+      <div class="layer-content">
+        <div class="module core new">
+          <div class="name">SkillMemory</div>
+          <div class="desc">技能存储 · 匹配 · 统计</div>
+        </div>
+        <div class="module core new">
+          <div class="name">ReplayEngine</div>
+          <div class="desc">模式提取 · 技能生成</div>
+        </div>
+        <div class="module core new">
+          <div class="name">EvolutionGuard</div>
+          <div class="desc">安全审查 · 免疫系统</div>
+        </div>
+        <div class="module core new">
+          <div class="name">PluginManager</div>
+          <div class="desc">能力注册 · Fallback 链</div>
+        </div>
+        <div class="module core new">
+          <div class="name">SkillContributor</div>
+          <div class="desc">插件贡献技能 · Agent模板</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-container"><span class="arrow bi">↕️</span></div>
+
+    <!-- 基础设施层 -->
+    <div class="layer">
+      <span class="layer-label infra">Infrastructure 层</span>
+      <div class="layer-content">
+        <div class="module infra">
+          <div class="name">SQLite Storage</div>
+          <div class="desc">任务 · 技能 · 审查持久化</div>
+        </div>
+        <div class="module infra">
+          <div class="name">Config Manager</div>
+          <div class="desc">环境变量 · 运行时配置</div>
+        </div>
+        <div class="module infra">
+          <div class="name">Event Bus Persistence</div>
+          <div class="desc">事件日志 · 审计</div>
+        </div>
+        <div class="module infra">
+          <div class="name">Skill Store</div>
+          <div class="desc">技能文件 · 模板存储</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-container"><span class="arrow bi">↕️</span></div>
+
+    <!-- Worker 层 -->
+    <div class="layer">
+      <span class="layer-label worker">Worker 层 — 执行引擎</span>
+      <div class="layer-content">
+        <div class="module worker">
+          <div class="name">OpenClaw Worker</div>
+          <div class="desc">HTTP Client</div>
+        </div>
+        <div class="module worker">
+          <div class="name">OpenHanako Worker</div>
+          <div class="desc">Electron IPC</div>
+        </div>
+        <div class="module worker">
+          <div class="name">Hermes Worker</div>
+          <div class="desc">CLI / HTTP</div>
+        </div>
+        <div class="module worker new">
+          <div class="name">Worker Pool</div>
+          <div class="desc">并发控制 · 资源限制</div>
+        </div>
+        <div class="module worker new">
+          <div class="name">Sandbox Manager</div>
+          <div class="desc">权限控制 · 隔离执行</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 事件流示例 -->
+  <div class="flow-section">
+    <h2>典型事件流 — 任务执行闭环</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-num">①</div>
+        <div class="step-text">用户提交任务</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">②</div>
+        <div class="step-text">MasterScheduler 路由</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">③</div>
+        <div class="step-text">EventBus 发布<br><strong>task.started</strong></div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">④</div>
+        <div class="step-text">TaskRegistry 注册<br>Dispatcher 下发</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">⑤</div>
+        <div class="step-text">Worker 执行<br>ExecutionMonitor 监控</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">⑥</div>
+        <div class="step-text">EventBus 发布<br><strong>task.completed</strong></div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">⑦</div>
+        <div class="step-text">ReplayEngine 提取模式<br>生成技能提案</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">⑧</div>
+        <div class="step-text">EvolutionGuard 审查<br>自动批准/人工审批</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">⑨</div>
+        <div class="step-text">SkillMemory 存储<br>下次自动复用</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-section">
+    <h2>典型事件流 — Agent 健康恢复</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-num">①</div>
+        <div class="step-text">HealthMonitor 检测<br>Agent 连续失败</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">②</div>
+        <div class="step-text">EventBus 发布<br><strong>agent.health_changed</strong></div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">③</div>
+        <div class="step-text">RecoveryManager 执行<br>重启/故障转移</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">④</div>
+        <div class="step-text">EventBus 发布<br><strong>agent.recovery_triggered</strong></div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">
+        <div class="step-num">⑤</div>
+        <div class="step-text">WaitingScheduler 订阅<br>等待任务自动续派</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 详细说明 -->
+  <div class="legend">
+    <div class="legend-card">
+      <h3>EventBus 事件类型</h3>
+      <ul>
+        <li><strong>task.*</strong> — 任务生命周期：started, completed, failed, timeout, cancelled, retrying</li>
+        <li><strong>agent.*</strong> — Agent 状态：health_changed, recovery_triggered, status_updated</li>
+        <li><strong>skill.*</strong> — 技能事件：activated, disabled, extracted, matched</li>
+        <li><strong>review.*</strong> — 审查事件：approved, rejected, needs_info, auto_approved</li>
+        <li><strong>plugin.*</strong> — 插件事件：registered, enabled, disabled, capability_added</li>
+        <li><strong>system.*</strong> — 系统事件：startup, shutdown, config_changed</li>
+      </ul>
+    </div>
+    <div class="legend-card">
+      <h3>TaskRegistry 类型处理器</h3>
+      <ul>
+        <li><strong>http_task</strong> — HTTP Worker 任务（OpenClaw, OpenHanako）</li>
+        <li><strong>cli_task</strong> — CLI Worker 任务（Hermes）</li>
+        <li><strong>discovery_task</strong> — 智能发现任务</li>
+        <li><strong>replay_task</strong> — 复刻分析任务</li>
+        <li><strong>health_check</strong> — 健康检查任务</li>
+        <li>支持动态注册新类型，运行时添加 handler</li>
+      </ul>
+    </div>
+    <div class="legend-card">
+      <h3>插件贡献能力</h3>
+      <ul>
+        <li><strong>skills/</strong> — 贡献技能模板（Markdown SKILL.md）</li>
+        <li><strong>agents/</strong> — 贡献 Agent 模板（JSON 配置）</li>
+        <li><strong>commands/</strong> — 贡献用户命令（斜杠触发）</li>
+        <li><strong>routes/</strong> — 贡献 HTTP 路由（需 full-access）</li>
+        <li><strong>providers/</strong> — 贡献 LLM Provider</li>
+        <li>插件通过 EventBus 注册能力，发布能力变更事件</li>
+      </ul>
+    </div>
+    <div class="legend-card">
+      <h3>多 Agent 并行改进</h3>
+      <ul>
+        <li><strong>Worker Pool</strong> — 控制并发数，避免资源耗尽</li>
+        <li><strong>非阻塞调度</strong> — Dispatcher 不等待 Worker 完成</li>
+        <li><strong>Hermes busy-file</strong> — 保留现有保护机制</li>
+        <li><strong>asyncio.gather</strong> — 多任务真正并行执行</li>
+        <li><strong>资源限制</strong> — CPU/内存/网络配额</li>
+        <li><strong>优先级队列</strong> — 高优先级任务优先执行</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="max-width: 1200px; margin: 30px auto; text-align: center; color: #64748b; font-size: 12px;">
+    All-Agent Manager V2 — 基于 OpenHanako 架构启发 · Self-Evolving Agent Orchestrator
+  </div>
+</body>
+</html>

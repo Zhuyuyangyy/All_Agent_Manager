@@ -1,0 +1,491 @@
+{
+  "version": 1,
+  "updated_at": "2026-05-14T22:00:00.000000",
+  "plugins": [
+    {
+      "id": "document-processor",
+      "name": "Document Processor",
+      "description": "Handles Word document creation, editing, and manipulation",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "create-docx",
+          "name": "Create DOCX",
+          "description": "Create a new Word document from content",
+          "inputs": ["content", "template", "format"],
+          "outputs": ["file_path"]
+        },
+        {
+          "id": "edit-docx",
+          "name": "Edit DOCX",
+          "description": "Edit existing Word document",
+          "inputs": ["file_path", "edits"],
+          "outputs": ["file_path"]
+        }
+      ],
+      "fallback_to": ["office-tools"],
+      "total_uses": 12,
+      "success_count": 11,
+      "fail_count": 1,
+      "success_rate": 91.7,
+      "created_at": "2026-05-10T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["document", "office", "word"],
+      "metadata": {
+        "category": "office",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "office-tools",
+      "name": "Office Tools",
+      "description": "General office document processing tools",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "convert-format",
+          "name": "Convert Format",
+          "description": "Convert between different document formats",
+          "inputs": ["file_path", "target_format"],
+          "outputs": ["file_path"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 8,
+      "success_count": 8,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-10T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["office", "conversion"],
+      "metadata": {
+        "category": "office",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "web-testing",
+      "name": "Web Testing",
+      "description": "Automated web application testing with Playwright",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "high",
+      "capabilities": [
+        {
+          "id": "run-tests",
+          "name": "Run Tests",
+          "description": "Execute automated web tests",
+          "inputs": ["test_cases", "url"],
+          "outputs": ["test_results", "screenshots"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 7,
+      "success_count": 7,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-11T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["testing", "web", "automation"],
+      "metadata": {
+        "category": "testing",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "screenshot-tool",
+      "name": "Screenshot Tool",
+      "description": "Capture screenshots of web pages and applications",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "low",
+      "capabilities": [
+        {
+          "id": "capture",
+          "name": "Capture Screenshot",
+          "description": "Take a screenshot of the current view",
+          "inputs": ["url", "selector", "format"],
+          "outputs": ["screenshot_path"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 15,
+      "success_count": 14,
+      "fail_count": 1,
+      "success_rate": 93.3,
+      "created_at": "2026-05-11T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["image", "capture", "visual"],
+      "metadata": {
+        "category": "visual",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "report-generator",
+      "name": "Report Generator",
+      "description": "Generates comprehensive reports in various formats",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "low",
+      "capabilities": [
+        {
+          "id": "generate-report",
+          "name": "Generate Report",
+          "description": "Create a report from data",
+          "inputs": ["data", "template", "format"],
+          "outputs": ["report_path"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 10,
+      "success_count": 10,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-12T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["report", "documentation"],
+      "metadata": {
+        "category": "documentation",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "pdf-processor",
+      "name": "PDF Processor",
+      "description": "PDF file manipulation and OCR capabilities",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "merge-pdf",
+          "name": "Merge PDFs",
+          "description": "Combine multiple PDF files into one",
+          "inputs": ["file_paths"],
+          "outputs": ["output_path"]
+        },
+        {
+          "id": "split-pdf",
+          "name": "Split PDF",
+          "description": "Split PDF into multiple files",
+          "inputs": ["file_path", "pages"],
+          "outputs": ["output_paths"]
+        },
+        {
+          "id": "extract-text",
+          "name": "Extract Text",
+          "description": "Extract text from PDF",
+          "inputs": ["file_path"],
+          "outputs": ["text"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 9,
+      "success_count": 8,
+      "fail_count": 1,
+      "success_rate": 88.9,
+      "created_at": "2026-05-12T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["pdf", "document", "office"],
+      "metadata": {
+        "category": "office",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "ocr-engine",
+      "name": "OCR Engine",
+      "description": "Optical Character Recognition for scanned documents",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "ocr-scan",
+          "name": "OCR Scan",
+          "description": "Scan document and extract text",
+          "inputs": ["image_path", "language"],
+          "outputs": ["text"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 5,
+      "success_count": 5,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-12T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["ocr", "text", "scanning"],
+      "metadata": {
+        "category": "text-processing",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "pdf-generator",
+      "name": "PDF Generator",
+      "description": "Create PDF files from various content sources",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "create-pdf",
+          "name": "Create PDF",
+          "description": "Generate PDF from content",
+          "inputs": ["content", "template"],
+          "outputs": ["file_path"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 6,
+      "success_count": 6,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-12T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["pdf", "document", "creation"],
+      "metadata": {
+        "category": "office",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "presentation-kit",
+      "name": "Presentation Kit",
+      "description": "Tools for creating and editing presentations",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "create-theme",
+          "name": "Create Theme",
+          "description": "Create a presentation theme",
+          "inputs": ["colors", "fonts"],
+          "outputs": ["theme"]
+        },
+        {
+          "id": "layout-slide",
+          "name": "Layout Slide",
+          "description": "Layout content on a slide",
+          "inputs": ["content", "template"],
+          "outputs": ["slide"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 7,
+      "success_count": 7,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-13T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["presentation", "slides", "design"],
+      "metadata": {
+        "category": "office",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "content-generator",
+      "name": "Content Generator",
+      "description": "AI-powered content generation for various use cases",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "generate-text",
+          "name": "Generate Text",
+          "description": "Generate text content",
+          "inputs": ["prompt", "length", "style"],
+          "outputs": ["text"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 20,
+      "success_count": 19,
+      "fail_count": 1,
+      "success_rate": 95.0,
+      "created_at": "2026-05-13T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["ai", "content", "generation"],
+      "metadata": {
+        "category": "ai",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "pptx-builder",
+      "name": "PPTX Builder",
+      "description": "Create and edit PowerPoint files",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "build-pptx",
+          "name": "Build PPTX",
+          "description": "Create PowerPoint file from slides",
+          "inputs": ["slides", "theme"],
+          "outputs": ["file_path"]
+        },
+        {
+          "id": "add-animation",
+          "name": "Add Animation",
+          "description": "Add animations to slides",
+          "inputs": ["file_path", "animations"],
+          "outputs": ["file_path"]
+        }
+      ],
+      "fallback_to": ["presentation-kit"],
+      "total_uses": 8,
+      "success_count": 8,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-13T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["pptx", "powerpoint", "presentation"],
+      "metadata": {
+        "category": "office",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "skill-designer",
+      "name": "Skill Designer",
+      "description": "Tools for designing and defining new skills",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "define-skill",
+          "name": "Define Skill",
+          "description": "Define a new skill structure",
+          "inputs": ["requirements", "use_cases"],
+          "outputs": ["skill_definition"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 4,
+      "success_count": 4,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-13T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["skill", "meta", "design"],
+      "metadata": {
+        "category": "meta",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "skill-builder",
+      "name": "Skill Builder",
+      "description": "Build and implement skills from definitions",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "implement-skill",
+          "name": "Implement Skill",
+          "description": "Implement skill from definition",
+          "inputs": ["skill_definition"],
+          "outputs": ["skill"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 3,
+      "success_count": 3,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-13T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["skill", "meta", "implementation"],
+      "metadata": {
+        "category": "meta",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "skill-tester",
+      "name": "Skill Tester",
+      "description": "Test and evaluate skill performance",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "medium",
+      "capabilities": [
+        {
+          "id": "run-evals",
+          "name": "Run Evaluations",
+          "description": "Run skill evaluation tests",
+          "inputs": ["skill", "test_cases"],
+          "outputs": ["results", "benchmarks"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 3,
+      "success_count": 3,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-13T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["skill", "testing", "evaluation"],
+      "metadata": {
+        "category": "meta",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "prompt-optimizer",
+      "name": "Prompt Optimizer",
+      "description": "Optimize prompts for better AI performance",
+      "version": "1.0.0",
+      "author": "OpenClaude",
+      "status": "active",
+      "security_level": "low",
+      "capabilities": [
+        {
+          "id": "optimize-prompt",
+          "name": "Optimize Prompt",
+          "description": "Optimize a prompt for better results",
+          "inputs": ["prompt", "goal"],
+          "outputs": ["optimized_prompt"]
+        }
+      ],
+      "fallback_to": [],
+      "total_uses": 6,
+      "success_count": 6,
+      "fail_count": 0,
+      "success_rate": 100.0,
+      "created_at": "2026-05-13T00:00:00.000000",
+      "updated_at": "2026-05-14T22:00:00.000000",
+      "tags": ["ai", "prompt", "optimization"],
+      "metadata": {
+        "category": "ai",
+        "license": "MIT"
+      }
+    }
+  ]
+}
