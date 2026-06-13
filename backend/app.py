@@ -141,6 +141,11 @@ def create_app(database_path: str | Path | None = None) -> FastAPI:
     # ── Task Planner ──
     task_planner = TaskPlanner()
 
+    # ── Scoring Router (多维评分路由) ──
+    from backend.scheduler import ScoringRouter, set_scoring_router
+    scoring_router = ScoringRouter()
+    set_scoring_router(scoring_router)
+
     # ── Agent Health ──
     from backend.agent_health import HealthMonitor
 
